@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>My notes list:</h1>
+    <ul class="notes_list">
+    {% for note in notes_list %}
+        <li class="notes_item">
+            <p class="notes_title">{{ note.title }}</p>
+            <p class="notes_content">{{ note.description }}</p>
+            {% if note.is_done %}
+                <div class="notes_status notes--done">Note is done!</div>
+           {% else %}
+                <div class="notes_status notes--in-progress">Note in progress...</div>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
