@@ -1,3 +1,12 @@
+.notes_container {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
 .notes_list  {
     display: flex;
     flex-wrap: wrap;
@@ -9,9 +18,15 @@
 }
 
 .notes_item {
-   padding: 20px;
    border-radius: 8px;
    border: 1px solid #e3e3e3;
+}
+
+.notes_item a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 20px;
 }
 
 .notes_title {
@@ -24,8 +39,9 @@
     margin: 0;
 }
 
-.notes_status {
-    border: 1px solid;
+.notes_category {
+    display: inline-block;
+    border: 1px solid green;
     border-radius: 4px;
     padding: 2px 8px;
     margin: 12px auto 0;
@@ -34,12 +50,12 @@
     color: rgb(2, 81, 2);
 }
 
-.notes--done {
-    border-color:  green;
-    color: rgb(2, 81, 2);
+.notes_reminder {
+    font-size: 12px;
+    margin: 0.5em 0 0;
+    color: #919191;
 }
 
-.notes--in-progress {
-    border-color:  red;
-    color: rgb(158, 0, 0);
+.errorlist {
+    display: none;
 }

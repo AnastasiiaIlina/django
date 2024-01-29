@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Note Page</title>
+    {% load static %}
+
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <div class="notes_container">
+    <div>
+      <h1>Add new note</h1>
+      <form method = "post"> 
+        {% csrf_token %} 
+        {{ form }} 
+        <input type="submit" value="Submit"> 
+      </form>   
+    </div>
+  </div>
+</body>
+</html>
