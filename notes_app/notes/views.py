@@ -9,7 +9,7 @@ def return_home_page(request):
         category_from_qs = request.GET.get('category')
         search_by_title_qs = request.GET.get('search')
 
-        if category_from_qs and category_from_qs != 'all':
+        if category_from_qs:
             notes_list = notes_list.filter(category = category_from_qs)
 
         if search_by_title_qs:
