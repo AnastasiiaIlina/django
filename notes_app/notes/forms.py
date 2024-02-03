@@ -1,5 +1,5 @@
 from django import forms
-from .models import Note
+from .models import Note, User
 
 class NoteForm(forms.ModelForm):
     title = forms.CharField(
@@ -27,3 +27,20 @@ class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['title', 'description', 'reminder', 'category']
+
+
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(
+        label='Username', 
+        max_length=100, 
+        widget=forms.TextInput(attrs={ 'class': 'form-control mb-2'})
+    )
+    password = forms.CharField(
+        label='Password', 
+        max_length=100, 
+        widget=forms.PasswordInput(attrs={ 'class': 'form-control mb-2'})
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']

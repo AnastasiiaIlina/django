@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
 from .models import Note
-from .forms import NoteForm
+from .forms import NoteForm, LoginForm
 
 def return_home_page(request):
     if request.method == 'GET':
@@ -62,7 +66,26 @@ def return_delete_note_page(request, id):
 
     return redirect('home_page')  
 
+def return_login_page(request):
+    if request.method == 'GET':
+        form = LoginForm(request.GET)
+        return render(request, "registration/login.html", context={'form': form})
 
+        
+    elif request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+        
+    return render(request, "registration/login.html", context={'form': form})
+
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
 
 
 
