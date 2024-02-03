@@ -1,5 +1,5 @@
 from django import forms
-from .models import Note
+from .models import Note, Category
 
 class NoteForm(forms.ModelForm):
     title = forms.CharField(
@@ -15,14 +15,10 @@ class NoteForm(forms.ModelForm):
         label='Reminder',
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control mb-2' }),
     )
-    category = forms.ChoiceField(
+    category = forms.ModelChoiceField(
         label='Category', 
         widget=forms.Select(attrs={ 'class': 'form-control mb-2'}),
-        choices=(
-            ('home', 'home'),
-            ('work', 'work'),
-            ('health', 'health')
-    ))
+        queryset=Category.objects.all())
 
     class Meta:
         model = Note
