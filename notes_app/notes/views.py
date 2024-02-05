@@ -3,12 +3,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from .models import Note
+from .models import Note, Category
 from .forms import NoteForm, LoginForm
 
 def return_home_page(request):
     if request.method == 'GET':
         notes_list = Note.objects.all()
+        categories = Category.objects.all()
 
         category_from_qs = request.GET.get('category')
         search_by_title_qs = request.GET.get('search')
@@ -20,7 +21,8 @@ def return_home_page(request):
             notes_list = notes_list.filter(title__icontains = search_by_title_qs)
     
         return render(request, "home_page.html", context={
-            "notes_list": notes_list
+            "notes_list": notes_list,
+            "categories": categories
         })
     
 

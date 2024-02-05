@@ -12,9 +12,10 @@
         Filter by category:  
         <div class="btn-group" role="group" aria-label="Basic example">
           <a class="btn btn-outline-secondary" href="{% url 'home_page' %}" class="">All</a>
-          <a class="btn btn-outline-secondary" href="{% url 'home_page' %}?category=home">Home</a>
-          <a class="btn btn-outline-secondary" href="{% url 'home_page' %}?category=health">Health</a>
-          <a class="btn btn-outline-secondary" href="{% url 'home_page' %}?category=work">Work</a>
+
+          {% for category in categories %}
+            <a class="btn btn-outline-secondary" href="{% url 'home_page' %}?category={{category.id}}">{{ category }}</a>
+          {% endfor %}
         </div>
       </div>
       <form method="get" class="d-flex align-items-center">
