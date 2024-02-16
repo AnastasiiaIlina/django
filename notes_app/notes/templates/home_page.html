@@ -24,21 +24,22 @@
       </form>
     </div>
     
-    {% if notes_list %}
+
       <div class="row row-cols-4 g-3">
       {% for note in notes_list %}
         <div class="col list">
           <a href="{% url 'one_note_page' note.id %}" class="p-4 align-items-start text-body card text-decoration-none">
             <h5 class="card-title">{{ note.title }}</h5>
+            <p><strong>@{{ note.author }}</strong></p>
             <p class="fs-6 mb-1">{{ note.description }}</p>
             <p class="text-secondary">Reminder: {{ note.reminder }}</p>
             <span class="badge text-bg-dark">{{ note.category }}</span>
           </a>
         </div>
+        {% empty %}
+        <p>The list is empty...</p>
       {% endfor %}
       </div>
-    {% else %}
-    <p>The list is empty...</p>
-    {% endif %}
+
   </div> 
 {% endblock %}

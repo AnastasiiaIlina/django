@@ -1,14 +1,18 @@
 {% extends "../layout.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}
   Sign Up Page
 {% endblock %}
 
 {% block content %} 
-<h2>Sign up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form }}
-  <button type="submit">Sign Up</button>
-</form>
+<h1 class="text-center mb-5">Sign In</h1>
+<div class="p-4 align-items-start w-25 m-auto text-body card">  
+  <form class="w-100" method="post">  
+    {% csrf_token %}
+    {{ form | crispy}}
+    <p>Have an account? Login <a href="{% url 'login' %}">here</a>!</p>
+    <button class="btn btn-dark m-auto mt-4 d-block" type="submit">Sign Up</button>
+  </form>
+</div>
 {% endblock %}

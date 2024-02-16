@@ -1,4 +1,5 @@
 {% extends "./layout.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}
   Add Note Page
@@ -7,9 +8,9 @@
 {% block content %} 
   <h1 class="text-center mb-5">Add note</h1>
   <div class="p-4 align-items-start w-25 m-auto text-body card">    
-    <form class="w-100" method = "post"> 
+    <form class="w-100" method="post"> 
       {% csrf_token %} 
-      {{ form }} 
+      {{ form | crispy }} 
       <button class="btn btn-dark m-auto mt-4 d-block" type="submit">Submit</button> 
     </form> 
   </div>

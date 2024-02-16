@@ -13,10 +13,54 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body class="d-flex flex-column h-100">
+    <header class="p-3 text-bg-dark mb-5">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="{% url 'home_page' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img src="{% static 'images/logo.svg' %}" alt="Logo" class="header_logo">
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-5 justify-content-center mb-md-0">
+                    <li>
+                        <a href="{% url 'home_page' %}" class="nav-link px-3 text-white">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'add_note_page' %}" class="nav-link px-3 text-white">Add note</a>
+                    </li>
+                </ul>
 
+                {% if user.is_authenticated %}
+                    <span>Hi, {{ user.username }}!</span>
+                
+                    <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-secondary ms-3" type="submit">Log Out</button>
+                    </form>
+                    {% else %}
+                    <a class="btn btn-dark" href="{% url 'login' %}">Log In</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
     <main class="flex-shrink-0">
         {% block content %} 
         {% endblock %} 
     </main>
+    <footer class="footer mt-auto py-5 bg-body-tertiary">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+                <a href="{% url 'home_page' %}" class="nav-link px-3 text-secondary">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'add_note_page' %}" class="nav-link px-3 text-secondary">
+                    Add note
+                </a>
+            </li>
+        </ul>
+        <p class="text-center text-secondary">© 2023 Company, Inc</p>
+    </footer>
 </body>
 </html>
